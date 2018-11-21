@@ -36,27 +36,27 @@ class App extends Component {
               <Grid item xs={12}>
               
                 <Grid item xs={12}>
-                  <Button color="green">
+                  <Button color="default">
                     <ExpandLess/>
                   </Button>
                 </Grid>
 
                 <Grid item xs={12}>
-                  <Button color="green">
+                  <Button color="default">
                     <ChevronLeft/>
                   </Button>
 
-                  <Button color="green">
+                  <Button color="default">
                     <MyLocation/>
                   </Button>
 
-                  <Button color="green">
+                  <Button color="default">
                     <ChevronRight/>
                   </Button>
                 </Grid>
 
                 <Grid item xs={12}>
-                  <Button color="green">
+                  <Button color="default">
                     <ExpandMore/>
                   </Button>
                 </Grid>
