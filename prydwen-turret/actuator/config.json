@@ -1,0 +1,8 @@
+{
+	"server": "MQTT Server IP or URL here",
+	"port": "MQTT Server port here as a number",
+	"topic": "MQTT topic to which to subscribe",
+	"panChannel": "number of channel for pan servo",
+	"tiltChannel": "number of channel for tilt servo",
+	"inputRange": "possible input range for panning and tilting"
+}
