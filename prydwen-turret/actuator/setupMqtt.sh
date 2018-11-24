@@ -11,6 +11,9 @@ bind_address 0.0.0.0
 port 1883
 protocol mqtt
 
+listener 9001
+protocol websockets
+
 log_type information
 log_type websockets
 websockets_log_level 0

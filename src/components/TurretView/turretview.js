@@ -1,7 +1,7 @@
-import Paper from '@material-ui/core/Paper';
-import React, { Component } from 'react';
-import Config from '../../config.json';
-import '../../App.css';
+import Paper from "@material-ui/core/Paper";
+import React, { Component } from "react";
+import Config from "../../config.json";
+import "../../App.css";
 
 class TurretView extends Component {
   constructor(props) {

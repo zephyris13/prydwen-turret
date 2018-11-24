@@ -1,7 +1,7 @@
-import Paper from '@material-ui/core/Paper';
-import Switch from '@material-ui/core/Switch';
-import React, { Component } from 'react';
-import '../../App.css';
+import Paper from "@material-ui/core/Paper";
+import Switch from "@material-ui/core/Switch";
+import React, { Component } from "react";
+import "../../App.css";
 
 class AutoAim extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class AutoAim extends Component {
           <Switch
             color="secondary"
             checked={this.state.autoaimChecked}
-            onChange={this.handleChange('autoaimChecked')}
+            onChange={this.handleChange("autoaimChecked")}
             value=""
           />
         </Paper>

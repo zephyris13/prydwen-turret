@@ -1,24 +1,40 @@
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
-import ChevronRight from '@material-ui/icons/ChevronRight';
-import MyLocation from '@material-ui/icons/MyLocation';
-import React, { Component } from 'react';
-import Config from '../../config.json';
-import '../../App.css';
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
+import Switch from "@material-ui/core/Switch";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import ChevronLeft from "@material-ui/icons/ChevronLeft";
+import ChevronRight from "@material-ui/icons/ChevronRight";
+import MyLocation from "@material-ui/icons/MyLocation";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Config from "../../config.json";
+import "../../App.css";
 
 class TurretControls extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cameraUrl: "http://" + Config["device_host"] + ":" + Config["camera_port"] + "/?action=stream",
+      mqttClient: props.mqttClient,
       spoolupChecked: false,
+      mqttConnected: false,
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.mqttClient !== this.props.mqttClient
+        && this.props.mqttClient !== undefined
+        && !this.setState.mqttConnected) {
+      this.setState({ mqttConnected: true });
+      console.log("Mqtt connected!");
+    }
+    else if (this.props.mqttClient === undefined
+      && this.setState.mqttConnected) {
+      this.setState({ mqttConnected: false });
+      console.log("Mqtt disconnected");
+    }
   }
 
   handleChange = name => event => {
@@ -64,7 +80,7 @@ class TurretControls extends Component {
                 <Switch
                   color="secondary"
                   checked={this.state.spoolupChecked}
-                  onChange={this.handleChange('spoolupChecked')}
+                  onChange={this.handleChange("spoolupChecked")}
                   value=""
                 />
               }
@@ -77,5 +93,9 @@ class TurretControls extends Component {
     );
   }
 }
+
+TurretControls.propTypes = {
+  mqttClient: PropTypes.object
+};
 
 export default TurretControls;
