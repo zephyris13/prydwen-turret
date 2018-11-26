@@ -90,23 +90,23 @@ def __main__():
 
             if topic == config['topicB']:
           # this is for spool up
-      	        spoolup = bool(payload)
+      	        spoolup = bool(int(payload))
           	if (spoolup):
               # call relay channel 0 on
-	            print "Spooling up"
+	            print ("Spooling up")
           	else:
               # call relay channel 0 off
-		    print "Spooling down"
+		    print ("Spooling down")
 
       	    if topic == config['topicC']:
           # this if for firing
-                firing = bool(payload)
+                firing = bool(int(payload))
           	if (firing):
               # call relay channel 1 on
-		    print "Firing!"
+		    print ("Firing!")
           	else:
               # call relay channel 1 off
-		    print "Stopping"
+		    print ("Stopping")
 
 
 	## Assign event callbacks
