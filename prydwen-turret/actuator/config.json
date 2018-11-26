@@ -1,8 +1,12 @@
 {
-	"server": "MQTT Server IP or URL here",
-	"port": "MQTT Server port here as a number",
-	"topic": "MQTT topic to which to subscribe",
-	"panChannel": "number of channel for pan servo",
-	"tiltChannel": "number of channel for tilt servo",
-	"inputRange": "possible input range for panning and tilting"
+  "server": "192.168.0.58",
+  "port": 1883,
+  "topicA": "controls/pan-tilt",
+  "topicB": "controls/spool-up",
+  "topicC": "controls/fire",
+  "panChannel": 0,
+  "tiltChannel": 1,
+  "inputRange": 1024,
+  "maxAngleChange": 20
 }
+

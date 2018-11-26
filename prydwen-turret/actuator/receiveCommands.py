@@ -60,8 +60,8 @@ def __main__():
 	    print("Connection result: " + str(rc))
 	    # subscribe to topic specified by config file
 	    mqttc.subscribe(config['topicA'], 0)
-      mqttc.subscribe(config['topicB'], 0)
-      mqttc.subscribe(config['topicC'], 0)
+	    mqttc.subscribe(config['topicB'], 0)
+	    mqttc.subscribe(config['topicC'], 0)
 
 	def on_message(client, userdata, msg):
 	    if msg.payload:
@@ -88,21 +88,25 @@ def __main__():
 	        else:
 	            print("Invalid number of arguments received")
 
-      if topic == config['topicB']:
-          # this if for spool up
-          spoolup = bool(payload)
-          if (spoolup):
+            if topic == config['topicB']:
+          # this is for spool up
+      	        spoolup = bool(payload)
+          	if (spoolup):
               # call relay channel 0 on
-          else:
+	            print "Spooling up"
+          	else:
               # call relay channel 0 off
+		    print "Spooling down"
 
-      if topic == config['topicC']:
+      	    if topic == config['topicC']:
           # this if for firing
-          spoolup = bool(payload)
-          if (spoolup):
+                firing = bool(payload)
+          	if (firing):
               # call relay channel 1 on
-          else:
+		    print "Firing!"
+          	else:
               # call relay channel 1 off
+		    print "Stopping"
 
 
 	## Assign event callbacks
