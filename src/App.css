@@ -1,7 +1,7 @@
 .App {
   text-align: center;
-  height: 99vh;
-  width: 99vw;
+  height: 100%;
+  width: 100%;
 }
 
 .App-logo {
@@ -11,6 +11,9 @@
 
 .App-background {
   background-color: #282c34;
+  background-repeat: repeat;
+  background-position: 0 0;
+  background-size: auto 100%;
 }
 
 .App-header {

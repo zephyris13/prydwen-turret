@@ -39,6 +39,9 @@ class TurretControls extends Component {
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
+    const message = !this.state.spoolupChecked;
+    console.log(message);
+    this.props.mqttClient.publish(Config["topicB"], JSON.stringify(message ? 1 : 0));
   };
 
   render() {
