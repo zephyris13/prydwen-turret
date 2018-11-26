@@ -59,7 +59,9 @@ def __main__():
 	def on_connect(client, userdata, flags, rc):
 	    print("Connection result: " + str(rc))
 	    # subscribe to topic specified by config file
-	    mqttc.subscribe(config['topic'], 0)
+	    mqttc.subscribe(config['topicA'], 0)
+      mqttc.subscribe(config['topicB'], 0)
+      mqttc.subscribe(config['topicC'], 0)
 
 	def on_message(client, userdata, msg):
 	    if msg.payload:
@@ -75,7 +77,8 @@ def __main__():
 
 	## other functions
 	def handleMessage(topic, payload):
-	    if topic == config['topic']:
+	    if topic == config['topicA']:
+          # this is for pan and tilt
 	        # split payload contents
 	        positions = payload.split()
 	        if len(positions) == 2:
@@ -84,6 +87,22 @@ def __main__():
 	            camera.move(int(positions[0]), int(positions[1]) )
 	        else:
 	            print("Invalid number of arguments received")
+
+      if topic == config['topicB']:
+          # this if for spool up
+          spoolup = bool(payload)
+          if (spoolup):
+              # call relay channel 0 on
+          else:
+              # call relay channel 0 off
+
+      if topic == config['topicC']:
+          # this if for firing
+          spoolup = bool(payload)
+          if (spoolup):
+              # call relay channel 1 on
+          else:
+              # call relay channel 1 off
 
 
 	## Assign event callbacks

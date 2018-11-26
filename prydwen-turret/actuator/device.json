@@ -1,7 +1,9 @@
 {
-	"server": "192.168.8.1",
+	"server": "192.168.0.58",
 	"port": 1883,
-	"topic": "controls/pan-tilt",
+  "topicA": "controls/pan-tilt",
+  "topicB": "controls/spool-up",
+  "topicC": "controls/fire",
 	"panChannel": 0,
 	"tiltChannel": 1,
 	"inputRange": 1024,

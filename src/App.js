@@ -26,7 +26,7 @@ class App extends Component {
       });
     })
 
-    client.on("reconnecting", () => {
+    client.on("close", () => {
       this.setState({
         mqttClient: undefined
       });
