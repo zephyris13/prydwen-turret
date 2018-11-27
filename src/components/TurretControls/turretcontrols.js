@@ -20,6 +20,7 @@ class TurretControls extends Component {
       mqttClient: props.mqttClient,
       spoolupChecked: false,
       mqttConnected: false,
+      mouseDownIntervalHandler: undefined,
     };
   }
 
@@ -44,6 +45,44 @@ class TurretControls extends Component {
     this.props.mqttClient.publish(Config["topicB"], JSON.stringify(message ? 1 : 0));
   };
 
+  handleFire = () => {
+    this.props.mqttClient.publish(Config["topicC"], JSON.stringify(1));
+    setTimeout(() => { this.props.mqttClient.publish(Config["topicC"], JSON.stringify(0)); }, 200);
+  }
+
+  handleMouseDown = (buttonId) => {
+    const intervalHandler = setInterval(() => { this.mouseDownWorker(buttonId); }, 100);
+    this.setState({ mouseDownIntervalHandler: intervalHandler });
+    return false;
+  }
+
+  handleMouseUp = (buttonId) => {
+    clearInterval(this.state.mouseDownIntervalHandler);
+    this.setState({ mouseDownIntervalHandler: undefined });
+    if (buttonId == 1) {
+      this.props.mqttClient.publish(Config["topicA"], "10 0");
+    }
+  }
+
+  mouseDownWorker = (buttonId) => {
+    switch(buttonId) {
+      case 0:
+
+          break;
+      case 1:
+
+          break;
+      case 2:
+
+          break;
+      case 3:
+
+          break;
+      default:
+        return false;
+  } 
+  }
+
   render() {
     return (
       <Paper className="Controls">
@@ -52,27 +91,27 @@ class TurretControls extends Component {
         <Grid item xs={12}>
         
           <Grid item xs={12}>
-            <Button color="default">
+            <Button color="default" onMouseDown={() => { this.handleMouseDown(0); }} onMouseUp={() => { this.handleMouseUp(0); }}>
               <ExpandLess/>
             </Button>
           </Grid>
 
           <Grid item xs={12}>
-            <Button color="default">
+            <Button color="default" onMouseDown={() => { this.handleMouseDown(3); }} onMouseUp={() => { this.handleMouseUp(3); }}>
               <ChevronLeft/>
             </Button>
 
-            <Button color="default">
+            <Button color="default" onClick={() => { this.handleFire(); }}>
               <MyLocation/>
             </Button>
 
-            <Button color="default">
+            <Button color="default" onMouseDown={() => { this.handleMouseDown(1); }} onMouseUp={() => { this.handleMouseUp(1); }}>
               <ChevronRight/>
             </Button>
           </Grid>
 
           <Grid item xs={12}>
-            <Button color="default">
+            <Button color="default" onMouseDown={() => { this.handleMouseDown(2); }} onMouseUp={() => { this.handleMouseUp(2); }}>
               <ExpandMore/>
             </Button>
           </Grid>
