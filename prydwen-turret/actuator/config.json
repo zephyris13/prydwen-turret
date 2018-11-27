@@ -1,5 +1,5 @@
 {
-  "server": "192.168.0.58",
+  "server": "127.0.0.1",
   "port": 1883,
   "topicA": "controls/pan-tilt",
   "topicB": "controls/spool-up",
@@ -7,6 +7,6 @@
   "panChannel": 0,
   "tiltChannel": 1,
   "inputRange": 180,
-  "maxAngleChange": 20
+  "maxAngleChange": 1
 }
 

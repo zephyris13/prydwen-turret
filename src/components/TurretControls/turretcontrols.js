@@ -59,28 +59,25 @@ class TurretControls extends Component {
   handleMouseUp = (buttonId) => {
     clearInterval(this.state.mouseDownIntervalHandler);
     this.setState({ mouseDownIntervalHandler: undefined });
-    if (buttonId == 1) {
-      this.props.mqttClient.publish(Config["topicA"], "10 0");
-    }
   }
 
   mouseDownWorker = (buttonId) => {
     switch(buttonId) {
       case 0:
-
-          break;
+        this.props.mqttClient.publish(Config["topicA"], "90 180");
+        break;
       case 1:
-
-          break;
+        this.props.mqttClient.publish(Config["topicA"], "180 90");
+        break;
       case 2:
-
-          break;
+        this.props.mqttClient.publish(Config["topicA"], "90 -180");
+        break;
       case 3:
-
-          break;
+        this.props.mqttClient.publish(Config["topicA"], "-180 90");
+        break;
       default:
         return false;
-  } 
+    }
   }
 
   render() {
