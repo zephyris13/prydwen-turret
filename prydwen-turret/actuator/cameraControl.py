@@ -45,13 +45,24 @@ class cameraControlRelative(cameraControl):
 
     # pan and tilt angles changed based on input values
     def move(self, panValue, tiltValue):
-        # update and set the pan angle
-        self.panAngle = self.panAngle + self.normalize(panValue)
-        print "Setting pan servo to %d"%self.panAngle
+
+	if (self.panAngle <= 0):
+	    self.panAngle = 1
+	elif (self.panAngle >= 180):
+	    self.panAngle = 179
+	else:
+            self.panAngle = self.panAngle + self.normalize(panValue)
+	
+	print "Setting pan servo to %d"%self.panAngle
         self.panServo.setAngle(self.panAngle)
 
-        # update and set the tilt angle
-        self.tiltAngle = self.tiltAngle + self.normalize(tiltValue)
+	if (self.tiltAngle <= 0):
+	    self.tiltAngle = 1
+	elif (self.tiltAngle >= 180):
+	    self.tiltAngle = 179
+	else:
+            self.tiltAngle = self.tiltAngle + self.normalize(tiltValue)
+
         print "Setting tilt servo %d"%self.tiltAngle
         self.tiltServo.setAngle(self.tiltAngle)
 
