@@ -7,6 +7,8 @@
   "panChannel": 0,
   "tiltChannel": 1,
   "inputRange": 180,
-  "maxAngleChange": 1
+  "maxAngleChange": 1,
+  "spoolupChannel": 0,
+  "fireChannel": 1
 }
 

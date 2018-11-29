@@ -2,6 +2,7 @@ import os, sys, json, getopt
 import paho.mqtt.client as mqtt
 
 import cameraControl
+import omegaRelay
 
 
 # variables
@@ -45,14 +46,21 @@ def __main__():
 		try:
 			camera = cameraControl.cameraControl(config['panChannel'], config['tiltChannel'], config['inputRange'])
 		except:
-			print("ERROR: config file most contain settings for 'panChannel', 'tiltChannel', and 'inputRange'")
+			print("ERROR: config file must contain settings for 'panChannel', 'tiltChannel', and 'inputRange'")
 			sys.exit(2)
 	else:
 		try:
 			camera = cameraControl.cameraControlRelative(config['panChannel'], config['tiltChannel'], config['inputRange'], config['maxAngleChange'])
 		except:
-			print("ERROR: config file most contain settings for 'panChannel', 'tiltChannel', 'inputRange', and 'maxAngleChange'")
+			print("ERROR: config file must contain settings for 'panChannel', 'tiltChannel', 'inputRange', and 'maxAngleChange'")
 			sys.exit(2)
+
+  try:
+    relaySpool = omegaRelay.Relay(config['spoolupChannel'], 0)
+    relayFire = omegaRelay.Relay(config['fireChannel'], 0)
+  except:
+    print("ERROR: config file must contain settings for 'spoolupChannel', 'fireChannel'")
+    sys.exit(2)
 
 	## define the mqtt callbacks
 	# when connection is made
