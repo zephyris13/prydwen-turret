@@ -9,6 +9,7 @@
   "inputRange": 180,
   "maxAngleChange": 1,
   "spoolupChannel": 0,
-  "fireChannel": 1
+  "fireChannel": 1,
+  "relayAddr": 7
 }
 

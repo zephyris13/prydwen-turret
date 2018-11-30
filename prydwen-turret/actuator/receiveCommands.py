@@ -55,12 +55,12 @@ def __main__():
 			print("ERROR: config file must contain settings for 'panChannel', 'tiltChannel', 'inputRange', and 'maxAngleChange'")
 			sys.exit(2)
 
-  try:
-    relaySpool = omegaRelay.Relay(config['spoolupChannel'], 0)
-    relayFire = omegaRelay.Relay(config['fireChannel'], 0)
-  except:
-    print("ERROR: config file must contain settings for 'spoolupChannel', 'fireChannel'")
-    sys.exit(2)
+	#try:
+	relaySpool = omegaRelay.Relay(config['spoolupChannel'], config['relayAddr'])
+    	relayFire = omegaRelay.Relay(config['fireChannel'], config['relayAddr'])
+  	#except:
+    		#print("ERROR: config file must contain settings for 'spoolupChannel', 'fireChannel'")
+   		#sys.exit(2)
 
 	## define the mqtt callbacks
 	# when connection is made
@@ -102,9 +102,11 @@ def __main__():
           	if (spoolup):
               # call relay channel 0 on
 	            print ("Spooling up")
+		    relaySpool.set(1)
           	else:
               # call relay channel 0 off
 		    print ("Spooling down")
+		    relaySpool.set(0)
 
       	    if topic == config['topicC']:
           # this if for firing
@@ -112,9 +114,11 @@ def __main__():
           	if (firing):
               # call relay channel 1 on
 		    print ("Firing!")
+		    relayFire.set(1)
           	else:
               # call relay channel 1 off
 		    print ("Stopping")
+		    relayFire.set(0)
 
 
 	## Assign event callbacks
